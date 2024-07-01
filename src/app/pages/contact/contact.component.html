@@ -1,1 +1,52 @@
-<p>contact works!</p>
+<h2 class="d-flex justify-content-center mt-3">Dejanos tu comentario</h2>
+<form (submit)="enviar($event)" [formGroup]="formulario">
+<div class="container p-5 bg-primary-subtle mt-5">
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label"
+      >Email address</label
+    >
+    <input
+      type="email"
+      class="form-control"
+      id="exampleFormControlInput1"
+      placeholder="name@example.com"
+      formControlName="email"
+      [ngClass]="{'is-invalid': hasError('email', 'required') || hasError('email', 'email')}"
+    />
+    @if (hasError('email', 'required')) {
+
+        <span class="text-danger">Campo requerido</span>
+    }
+    @if (hasError('email', 'email')) {
+
+        <span class="text-danger">formato invalido</span>
+    }
+  </div>
+  <div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label"
+      >Leave comment</label
+    >
+    <textarea
+      class="form-control"
+      id="exampleFormControlTextarea1"
+      rows="3"
+      placeholder="..."
+      formControlName="mensaje"
+      [ngClass]="{'is-invalid': hasError('mensaje', 'required') || hasError('mensaje', 'minlength')}"
+    ></textarea>
+    @if (hasError('mensaje', 'required')) {
+
+        <span class="text-danger">Campo requerido</span>
+    }
+    @if (hasError('mensaje', 'minlength')) {
+
+        <span class="text-danger">Minimo 10 caracteres</span>
+    }
+  </div>
+  <div class="mb-3 d-flex flex-row-reverse">
+
+      <button type="submit" class="btn btn-primary ">Submit</button>
+  </div>
+
+</div>
+</form>
